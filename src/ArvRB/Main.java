@@ -10,20 +10,19 @@ public class Main {
         arvoreRB.adiciona(91);
         arvoreRB.adiciona(38);
         arvoreRB.adiciona(7);
+        arvoreRB.adiciona(1);
 
-        arvoreRB.grafico();
+        //arvoreRB.grafico();
 
-//        System.out.println(arvoreRB.minimo());
-//
-//        System.out.println(arvoreRB.maximo());
-//
-//        arvoreRB.encontra(67);
-//
-//
-//        arvoreRB.remove(55);
+        System.out.println( "O menor valor da arvore e: " + arvoreRB.menorValor());
+
+        System.out.println( "O maior valor da arvore e: " + arvoreRB.maiorValor());
+
 //        arvoreRB.remove(38);
 //
 //        arvoreRB.grafico();
+//
+//        arvoreRB.inorderWalk();
 
     }
 }

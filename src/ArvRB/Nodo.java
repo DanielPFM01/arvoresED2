@@ -55,6 +55,20 @@ public class Nodo {
         if (this.dir != Arvore.sentinela) this.dir.inorderWalk();
     }
 
+    public Integer menorValor(Nodo raiz) {
+        Nodo current = raiz;
+        while (current.esq != Arvore.sentinela)
+           current = current.esq;
+        return current.v;
+    }
+
+    public Integer maiorValor(Nodo raiz) {
+        Nodo current = raiz;
+        while (current.dir != Arvore.sentinela)
+            current = current.dir;
+        return current.v;
+    }
+
     public Nodo predecessor() {
         // Informa o valor do Nodo que antecede (em termos de valores)
         // o atual Nodo

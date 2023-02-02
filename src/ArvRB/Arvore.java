@@ -247,6 +247,14 @@ public class Arvore {
         return this.raiz.v;
     }
 
+    public Integer menorValor(){
+        return this.raiz.menorValor(raiz);
+    }
+
+    public Integer maiorValor(){
+        return this.raiz.maiorValor(raiz);
+    }
+
     public Nodo encontra (int n) {
         return this.raiz.encontra(n);
     }
