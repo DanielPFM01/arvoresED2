@@ -2,16 +2,16 @@ package ArvRB;
 
 public class RedBlackNode {
 
-        RedBlackNode leftChild, rightChild;
-        int element;
-        int color;
+    RedBlackNode leftChild, rightChild;
+    int element;
+    int color;
 
-        //constructor to set the value of a node having no left and right child
+    //construtor para setar o valor do no nao tendo nenhum filho, ou seja, ambos nulos
     public RedBlackNode(int element){
             this( element, null, null );
         }
 
-        //constructor to set value of element, leftChild, rightChild and color
+    //construtor para setar valor do elemento, filho esquerdo, direito e cor
     public RedBlackNode(int element, RedBlackNode leftChild, RedBlackNode rightChild){
             this.element = element;
             this.leftChild = leftChild;

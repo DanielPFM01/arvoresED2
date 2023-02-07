@@ -1,75 +1,68 @@
 package ArvRB;
 
 public class CreateRedBlackTree {
-    private static RedBlackNode nullNode;   //define null node
-    private RedBlackNode current;   //define current node
-    private RedBlackNode parent;    //define parent node
-    private RedBlackNode header;   // define header node
-    private RedBlackNode grand; //define grand node
-    private RedBlackNode great; //define great node
+    private static RedBlackNode nullNode;
+    private RedBlackNode current;
+    private RedBlackNode parent;
+    private RedBlackNode header;
+    private RedBlackNode grand;
+    private RedBlackNode great;
 
-    //create two variables, i.e., RED and Black for color and the values of these variables are 0 and 1 respectively.
+
     static final int RED   = 0;
     static final int BLACK = 1;
 
-    // using static initializer for initializing null Node
-    static
-    {
+    // usar iniciador static para inicializar no nulo
+    static {
         nullNode = new RedBlackNode(0);
         nullNode.leftChild = nullNode;
         nullNode.rightChild = nullNode;
     }
 
 
-    // Constructor for creating header node
-    public CreateRedBlackTree(int header)
-    {
+    // Construtor para criar no raiz
+    public CreateRedBlackTree(int header) {
         this.header = new RedBlackNode(header);
         this.header.leftChild = nullNode;
         this.header.rightChild = nullNode;
     }
 
-    // create removeAll() for making the tree logically empty
-    public void removeAll()
-    {
+    public void removeAll() {
         header.rightChild = nullNode;
     }
 
-    //create method checkEmpty() to check whether the tree is empty or not
-    public boolean checkEmpty()
-    {
+    //checar se a arvore esta vazia ou nao
+    public boolean checkEmpty() {
         return header.rightChild == nullNode;
     }
 
-    //create insertNewNode() method for adding a new node in the red black tree
-    public void insertNewNode(int newElement )
-    {
-        current = parent = grand = header;      //set header value to current, parent, and grand node
-        nullNode.element = newElement;          //set newElement to the element of the null node
+    //adicionar novo no na arvore
+    public void insertNewNode(int newElement ) {
+        current = parent = grand = header;      //setar valor da raiz para current, parent, e grand node
+        nullNode.element = newElement;          //setar newElement para o elemento do no nulo
 
-        //repeat statements until the element of the current node will not equal to the value of the newElement
-        while (current.element != newElement)
-        {
+        //repetir ate que o elemento do no atual nao seja igual ao valor de newElement
+        while (current.element != newElement) {
             great = grand;
             grand = parent;
             parent = current;
 
-            //if the value of the newElement is lesser than the current node element, the current node will point to the current left child else point to the current right child.
+            //se o valor do newElement for menor do que elemento do no atual, o no atual apontara para o filho esquerdo atual. Se nao, apontara para o direito
             current = newElement < current.element ? current.leftChild : current.rightChild;
 
-            // Check whether both the children are RED or NOT. If both the children are RED change them by using handleColors() method
+            //Checar se ambos os filhos sao vermelho ou nao. Se forem, trocar usando metodo hadndleColors()
             if (current.leftChild.color == RED && current.rightChild.color == RED)
                 handleColors( newElement );
         }
 
-        // insertion of the new node will be fail if will already present in the tree
+        //insercao falhara se ja estiver presente na arvore
         if (current != nullNode)
             return;
 
-        //create a node having no left and right child and pass it to the current node
+        //criar no nao tendo filhos e passa-lo para o no atual
         current = new RedBlackNode(newElement, nullNode, nullNode);
 
-        //connect the current node with the parent
+        //conectar o no atual com seu pai
         if (newElement < parent.element)
             parent.leftChild = current;
         else
@@ -77,18 +70,17 @@ public class CreateRedBlackTree {
         handleColors( newElement );
     }
 
-    //create handleColors() method to maintain the colors of Red-black tree nodes
-    private void handleColors(int newElement)
-    {
-        // flip the colors of the node
-        current.color = RED;    //make current node RED
-        current.leftChild.color = BLACK;    //make leftChild BLACK
-        current.rightChild.color = BLACK;   //make rightChild BLACK
+    //realizar manuntencao das cores dos nos da arvore
+    private void handleColors(int newElement) {
+        // trocar cores dos nos
+        current.color = RED;    //no atual ficar vermelho
+        current.leftChild.color = BLACK;    //fazer filho esquerdo do no ficar preto
+        current.rightChild.color = BLACK;   //fazer filho direito do no ficar preto
 
-        //check the color of the parent node
-        if (parent.color == RED)
-        {
-            // perform rotation in case when the color of parent node is RED
+        //checar cor do no pai
+        if (parent.color == RED) {
+
+            //performar rotacao caso a cor do no pai for vermelho
             grand.color = RED;
 
             if (newElement < grand.element && grand.element != newElement && newElement < parent.element)
@@ -97,47 +89,41 @@ public class CreateRedBlackTree {
             current.color = BLACK;
         }
 
-        // change the color of the root node with BLACK
         header.rightChild.color = BLACK;
     }
 
-    //create performRotation() method to perform dbl rotation
-    private RedBlackNode performRotation(int newElement, RedBlackNode parent)
-    {
-        //check whether the value of the newElement is lesser than the element of the parent node or not
+    //performar rotacao dupla
+    private RedBlackNode performRotation(int newElement, RedBlackNode parent) {
+        //checar se o valor de newElement for menor que o elemento do no pai
         if(newElement < parent.element)
-            //if true, perform the rotation with the left child and right child based on condition and set return value to the left child of the parent node
+            //se for, performar rotacao com filho esquerdo e direito baseado na condicao e setar valor de retorno para a crianca esquerda do no pai
             return parent.leftChild = newElement < parent.leftChild.element ? rotationWithLeftChild(parent.leftChild) : rotationWithRightChild(parent.leftChild) ;
         else
-            //if false, perform the rotation with the left child and right child based on condition and set return value to the right child of the parent node
+            //se nao, performar rotacao com o filho esquerdo e direito baseado na condicao e setar valor de retorno para a crianca direita do no pai
             return parent.rightChild = newElement < parent.rightChild.element ? rotationWithLeftChild(parent.rightChild) : rotationWithRightChild(parent.rightChild);
     }
 
-    //create rotationWithLeftChild() method  for rotating binary tree node with left child
-    private RedBlackNode rotationWithLeftChild(RedBlackNode node2)
-    {
+    //rotacionar no com filho esquerdo
+    private RedBlackNode rotationWithLeftChild(RedBlackNode node2) {
         RedBlackNode node1 = node2.leftChild;
         node2.leftChild = node1.rightChild;
         node1.rightChild = node2;
         return node1;
     }
 
-    // create rotationWithRightChild() method for rotating binary tree node with right child
-    private RedBlackNode rotationWithRightChild(RedBlackNode node1)
-    {
+    //rotacionar no com filho direito
+    private RedBlackNode rotationWithRightChild(RedBlackNode node1) {
         RedBlackNode node2 = node1.rightChild;
         node1.rightChild = node2.leftChild;
         node2.leftChild = node1.leftChild;
         return node2;
     }
 
-    // create nodesInTree() method for getting total number of nodes in a tree
-    public int nodesInTree()
-    {
+    //pegar numero total de nos na arvore
+    public int nodesInTree() {
         return nodesInTree(header.rightChild);
     }
-    private int nodesInTree(RedBlackNode node)
-    {
+    private int nodesInTree(RedBlackNode node) {
         if (node == nullNode)
             return 0;
         else
@@ -148,13 +134,12 @@ public class CreateRedBlackTree {
             return size;
         }
     }
-    // create searchNode() method to get desired node from the Red-Black tree
-    public boolean searchNode(int value)
-    {
+
+    //buscar no desejado na arvore
+    public boolean searchNode(int value) {
         return searchNode(header.rightChild, value);
     }
-    private boolean searchNode(RedBlackNode node, int value)
-    {
+    private boolean searchNode(RedBlackNode node, int value) {
         boolean check = false;
         while ((node != nullNode) && check != true)
         {
@@ -173,13 +158,11 @@ public class CreateRedBlackTree {
         return check;
     }
 
-    //create preorderTraversal() method to perform inorder traversal
-    public void preorderTraversal()
-    {
+    //pre ordem
+    public void preorderTraversal() {
         preorderTraversal(header.rightChild);
     }
-    private void preorderTraversal(RedBlackNode node)
-    {
+    private void preorderTraversal(RedBlackNode node) {
         if (node != nullNode)
         {
             char c = 'R';
@@ -191,13 +174,11 @@ public class CreateRedBlackTree {
         }
     }
 
-    //create inorderTraversal() method to perform inorder traversal
-    public void inorderTraversal()
-    {
+    //em ordem
+    public void inorderTraversal() {
         inorderTraversal(header.rightChild);
     }
-    private void inorderTraversal(RedBlackNode node)
-    {
+    private void inorderTraversal(RedBlackNode node) {
         if (node != nullNode)
         {
             inorderTraversal(node.leftChild);
@@ -209,13 +190,11 @@ public class CreateRedBlackTree {
         }
     }
 
-    //create postorderTraversal() method to perform inorder traversal
-    public void postorderTraversal()
-    {
+    //pos ordem
+    public void postorderTraversal() {
         postorderTraversal(header.rightChild);
     }
-    private void postorderTraversal(RedBlackNode node)
-    {
+    private void postorderTraversal(RedBlackNode node) {
         if (node != nullNode)
         {
             postorderTraversal(node.leftChild);
