@@ -602,19 +602,28 @@ B) I e II, apenas.
 C) I e III, apenas.
 D) II e III, apenas.
 E) I, II e III. 
-Uma Árvore-B de ordem m é uma árvore m-direcional tal que todas as folhas estão no mesmo nível. 2. Uma Árvore-B de ordem m é uma árvore m-direcional tal que todos os nós internos, com exceção da raiz, estão restritos a terem no máximo 2 filhos não vazios. 3. Uma Árvore-B de ordem m é uma árvore m-direcional tal que a raiz deve ter pelo menos m filhos não vazios. 
+
+Resposta Correta: E
+
+1. Uma Árvore-B de ordem m é uma árvore m-direcional tal que todas as folhas estão no mesmo nível. 2. Uma Árvore-B de ordem m é uma árvore m-direcional tal que todos os nós internos, com exceção da raiz, estão restritos a terem no máximo 2 filhos não vazios. 3. Uma Árvore-B de ordem m é uma árvore m-direcional tal que a raiz deve ter pelo menos m filhos não vazios. 
 Assinale a alternativa que indica todas as afirmativas corretas.  
 Alternativas
-AÉ correta apenas a afirmativa 1.
-BÉ correta apenas a afirmativa 2.
-CSão corretas apenas as afirmativas 1 e 2.
-DSão corretas apenas as afirmativas 1 e 3.
-ESão corretas apenas as afirmativas 2 e 3.
-Quanto aos conceitos de árvore binária, assinale a alternativa correta. Alternativas
-AOperações que utilizam recursão não podem ser realizadas sobre árvores binárias.
+A É correta apenas a afirmativa 1.
+B É correta apenas a afirmativa 2.
+C São corretas apenas as afirmativas 1 e 2.
+D São corretas apenas as afirmativas 1 e 3.
+E São corretas apenas as afirmativas 2 e 3.
+
+Resposta Correta: B
+
+Quanto aos conceitos de árvore binária, assinale a alternativa correta. 
+Alternativas
+A Operações que utilizam recursão não podem ser realizadas sobre árvores binárias.
 B A árvore pode ser vazia, isto é, não ter nenhum elemento.
 C Uma árvore estritamente binária com n folhas tem 2n2 - 1 nós.
-DA altura de um nó é o comprimento do menor caminho do nó até o seu primeiro descendente.
+D A altura de um nó é o comprimento do menor caminho do nó até o seu primeiro descendente.
+
+Resposta Correta: B
 
 [POSCOMP 2016 – FUNDATEC] A operação de destruição de uma árvore requer um tipo de percurso em que a liberação de um nó é realizada apenas após todos os seus descendentes terem sido também liberados. Segundo essa descrição, a operação de destruição de uma árvore deve ser implementada utilizando o percurso 
 A) em ordem. 
